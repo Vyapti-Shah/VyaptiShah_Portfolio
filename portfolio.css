@@ -156,7 +156,7 @@ body {
 
 .mobile-menu-btn {
     display: none;
-    background: none;
+    background: gray;
     border: none;
     font-size: 1.5rem;
     color: #424242;
