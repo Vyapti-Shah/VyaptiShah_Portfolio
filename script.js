@@ -303,7 +303,8 @@ const projectLinks = {
   'captcha-system': 'https://github.com/Vyapti-Shah/QR-based-Multi-level-CAPTCHA-System',
   'num-plate': 'https://github.com/Vyapti-Shah/fastapi_for_number_plate_ocr_model-', 
   'deepfake-detect': 'https://github.com/Vyapti-Shah/Deepfake-Detection',
-  'data-analytics' : 'https://github.com/Vyapti-Shah/Data_Analysis_Learnings'
+  'data-analytics': 'https://github.com/Vyapti-Shah/Data_Analysis_Learnings',
+  'web-page-anupam': 'https://github.com/Vyapti-Shah/Anupam-Frontend'
 };
 
 projectCards.forEach(card => {
