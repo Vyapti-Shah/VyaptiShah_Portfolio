@@ -54,25 +54,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add click event listeners to navigation links
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
 
-            // Map navigation hrefs to section IDs
-            const sectionMapping = {
-                '#home': 'home',
-                '#about': 'about',
-                '#skills': 'skills', 
-                '#education': 'education',
-                '#project': 'project',
-                '#contact': 'contact'
-            };
+        const sectionMapping = {
+            '#home': 'home',
+            '#about': 'about',
+            '#skills': 'skills',
+            '#education': 'education',
+            '#projects': 'projects',
+            '#contact': 'contact'
+        };
 
-            const targetId = sectionMapping[href];
-            if (targetId) {
-                showSection(targetId);
-            }
-        });
+        const targetId = sectionMapping[href];
+        if (targetId) {
+            showSection(targetId);
+        }
+
+        const navMenu = document.querySelector('.nav-menu');
+        if (window.innerWidth <= 768 && navMenu) {
+            navMenu.classList.remove('show');
+        }
+      });
     });
 
     // Add click event listener to hire button
@@ -256,45 +260,6 @@ window.addEventListener('scroll', function() {
         observer.observe(card);
     });
 
-    // Mobile menu functionality
-    function createMobileMenu() {
-        const navContainer = document.querySelector('.nav-container');
-        const existingBtn = document.querySelector('.mobile-menu-btn');
-
-        if (!existingBtn) {
-            const mobileMenuBtn = document.createElement('button');
-            mobileMenuBtn.classList.add('mobile-menu-btn');
-            mobileMenuBtn.innerHTML = '☰';
-
-            mobileMenuBtn.addEventListener('click', function() {
-                const navMenu = document.querySelector('.nav-menu');
-                navMenu.classList.toggle('show');
-            });
-
-            navContainer.appendChild(mobileMenuBtn);
-        }
-    }
-
-    // Initialize mobile menu if screen is small
-    if (window.innerWidth <= 768) {
-        createMobileMenu();
-    }
-
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
-            createMobileMenu();
-        } else {
-            const mobileBtn = document.querySelector('.mobile-menu-btn');
-            const navMenu = document.querySelector('.nav-menu');
-            if (mobileBtn) {
-                mobileBtn.remove();
-            }
-            if (navMenu) {
-                navMenu.classList.remove('show');
-            }
-        }
-    });
 
     // Contact card interactive effects
     const contactCards = document.querySelectorAll('.contact-card');
@@ -402,6 +367,22 @@ function createDarkModeToggle() {
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', createDarkModeToggle);
+
+function toggleMobileMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+
+    if (!navMenu) return;
+
+    navMenu.classList.toggle('show');
+
+    if (mobileBtn) {
+        mobileBtn.setAttribute(
+            'aria-expanded',
+            navMenu.classList.contains('show') ? 'true' : 'false'
+        );
+    }
+}
 
 // Utility functions
 function scrollToTop() {
