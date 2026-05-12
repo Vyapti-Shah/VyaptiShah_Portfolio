@@ -453,3 +453,14 @@ function scrollToProjects() {
     block: 'start' 
   });
 }
+
+function downloadFile() {
+  const iframe = document.getElementById('fileViewer');
+  const url = iframe.src;
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '';  // Uses original filename
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
